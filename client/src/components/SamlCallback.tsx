@@ -4,9 +4,7 @@ import { useEffect } from "react";
 import { setAuth, setTenants, setUser } from "../store/store";
 import { useDispatch } from "react-redux";
 
-const FE_BASE_URL = import.meta.env.VITE_FE_BASE_URL
-  ? import.meta.env.VITE_FE_BASE_URL
-  : "https://app-kcj0djtbjuee.frontegg.com";
+const FE_BASE_URL = import.meta.env.VITE_FE_BASE_URL;
 
 export default function SamlCallback() {
   const { sendRequest, requestErrors } = useRequest();

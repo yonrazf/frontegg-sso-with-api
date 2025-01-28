@@ -8,6 +8,7 @@ interface PreloginResponse {
   address: string;
   idpType: "saml" | "oidc";
 }
+const FE_BASE_URL = import.meta.env.VITE_FE_BASE_URL;
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -35,7 +36,7 @@ export default function LoginWithCustomSSO() {
 
   async function getPrelogin(email: string) {
     await sendRequest({
-      url: "https://app-kcj0djtbjuee.frontegg.com/frontegg/identity/resources/auth/v2/user/sso/prelogin",
+      url: `${FE_BASE_URL}/frontegg/identity/resources/auth/v2/user/sso/prelogin`,
       method: "POST",
       body: {
         email,
