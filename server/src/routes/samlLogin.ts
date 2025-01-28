@@ -1,6 +1,6 @@
 import { Request, Response, Router, urlencoded } from "express";
 import cors from "cors";
-import { FE_BASE_URL } from "..";
+import { FE_BASE_URL, FE_COOKIE_DOMAIN } from "..";
 
 const router = Router();
 
@@ -76,7 +76,7 @@ async function callSamlCallback(req: Request, res: Response) {
       secure: true,
       sameSite: "none", // Really important for cross domain cookies
       maxAge: 3600000, // Cookie expiration time
-      domain: ".app-kcj0djtbjuee.frontegg.com", // has to be your frontegg domain!!
+      domain: FE_COOKIE_DOMAIN, // has to be your frontegg domain!!
     });
 
     res.status(302).redirect("http://localhost:5500/saml/callback"); // after appending cookies, redirect back to your client

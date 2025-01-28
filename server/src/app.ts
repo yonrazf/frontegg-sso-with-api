@@ -11,13 +11,6 @@ const app = express();
 
 app.use(errorHandler);
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:3000",
-  "https://app-kcj0djtbjuee.frontegg.com/oauth/account/login",
-  "*",
-]; // Add all allowed origins here
-
 app.use(
   cors({
     origin: function (origin, callback) {
