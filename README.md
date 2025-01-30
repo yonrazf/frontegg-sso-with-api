@@ -5,7 +5,7 @@ Currently supports only SAML login
 Refer to [this guide](https://support.frontegg.com/frontegg/article/ART-3940-how-to-implement-single-sign-on-sso-flow-with-frontegg-apis) for initial setup
 
 ## Basic steps to set up
-1. set your acs url as your backend (for this example it's http://localhost:5500/auth/saml/callback)
+1. set your acs url as your backend (for this example it's http://localhost:3001/auth/saml/callback) - This should be configured both on the IdP of your choice & on the Frontegg Portal
 
 2. redirect a user to the idp on login (Is implemented on getPrelogin on loginWithCustomSSO.tsx)
 
