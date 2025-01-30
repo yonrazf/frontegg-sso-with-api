@@ -4,6 +4,12 @@ Currently supports only SAML login
 
 Refer to [this guide](https://support.frontegg.com/frontegg/article/ART-3940-how-to-implement-single-sign-on-sso-flow-with-frontegg-apis) for initial setup
 
+## Prerequisites
+You must configure a custom domain to enable this feature - a custom domain is essential in order to pass the refresh token from the server to the client, and then from the client to the Frontegg API.
+_This guide assumes you don't have one and utilizes a workaround to pass the refresh token to the client, but this is not a best practice. you should pass the refresh token as a secure token_
+- Use [this guide](https://developers.frontegg.com/guides/env-settings/custom-domain) to set up a custom domain
+- For local development, add your custom domain to localhost under /etc/hosts, to make sure cookies from that server are added using that domain.
+
 ## Basic steps to set up
 1. set your acs url as your backend (for this example it's http://localhost:3001/auth/saml/callback) - This should be configured both on the IdP of your choice & on the Frontegg Portal
 
