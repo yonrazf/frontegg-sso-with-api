@@ -9,8 +9,11 @@ Refer to [this guide](https://support.frontegg.com/frontegg/article/ART-3940-how
 
 ### Set up IdP configurations - Okta exapmple
 
-1. set your acs url as configured on Frontegg ("https://[your-frontegg-domain/custom-domain]/auth/saml/callback")
-   [Okta Settings](images/okta_settings.png)
+1. set your acs url as configured on Frontegg
+   ```bash
+   "https://[your-frontegg-domain/custom-domain]/auth/saml/callback"
+   ```
+   ![Okta Settings](images/okta_settings.png)
 2. Set up configuration as normal based on [this doc](https://developers.frontegg.com/guides/authentication/sso/management/saml)
 
 ### Set up SAML Redirect URL
@@ -18,11 +21,12 @@ Refer to [this guide](https://support.frontegg.com/frontegg/article/ART-3940-how
 The SAML redirect URL is where the user will be redirected to after being authenticated both on the IdP and on Frontegg.
 The redirect will also include a refresh cookie, that should be used to get a user token on the client side.
 In this example, we redirect to http://localhost:5500/saml/callback, which has a component that calls the refresh endpoint and gets the user into an authenticated state.
-[Frontegg settings](images/frontegg-sso-config.png)
+
+![Frotnegg Settings](https://github.com/yonrazf/frontegg-sso-with-api/blob/main/images/frontegg-sso-config.png)
 
 ## Flow implementation in the app
 
-[Flow diagram](images/saml-flow.drawio.png)
+![Flow diagram](images/saml-flow.drawio.png)
 
 1. The user enters their name into a form that calls a prelogin request and gets back a redirect url to idp login (handled by the Frontegg login box in the usual flow)
 
@@ -40,7 +44,7 @@ In this example, we redirect to http://localhost:5500/saml/callback, which has a
 
 6. Store the data recieved in your state
 
-## Intallation
+## Installation
 
 1. Clone the repo
 2. add .env files to each of the folders
