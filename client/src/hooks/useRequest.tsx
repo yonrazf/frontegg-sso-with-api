@@ -1,4 +1,4 @@
-import axios, { AxiosError, Method } from "axios";
+import axios, { AxiosError, HttpStatusCode, Method } from "axios";
 import { useState } from "react";
 
 // a hook to handle request a lil more gracefully
@@ -19,6 +19,7 @@ export default function useRequest() {
   const [requestErrors, setRequestErrors] = useState<RequestError[] | null>(
     null
   );
+  const [statusCode, setStatusCode] = useState<HttpStatusCode>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const sendRequest = async ({
@@ -39,10 +40,19 @@ export default function useRequest() {
         data: body,
         withCredentials,
       });
-
+      const { data } = response;
+      if (data.message?.errors) {
+        console.error(
+          `Error status ${data.statusCode}: ${data.message.errors[0]}`
+        );
+        setRequestErrors(
+          data.message.errors.map((err: string) => ({ message: err }))
+        );
+      }
       if (onSuccess) {
         onSuccess(response.data);
       }
+      setStatusCode(data.statusCode);
       return response.data;
     } catch (err) {
       console.error(err);
@@ -53,5 +63,5 @@ export default function useRequest() {
     setIsLoading(false);
   };
 
-  return { requestErrors, sendRequest, isLoading };
+  return { requestErrors, sendRequest, isLoading, statusCode };
 }

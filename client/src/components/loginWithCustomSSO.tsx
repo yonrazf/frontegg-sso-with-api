@@ -8,7 +8,8 @@ interface PreloginResponse {
   address: string;
   idpType: "saml" | "oidc";
 }
-const FE_BASE_URL = import.meta.env.VITE_FE_BASE_URL;
+const FE_BASE_URL =
+  import.meta.env.VITE_FE_BASE_URL ?? "https://auth.sabich.life";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
@@ -19,9 +20,9 @@ export default function LoginWithCustomSSO() {
   const {
     register,
     handleSubmit,
-    formState: { errors: formErrors, isSubmitting },
+    formState: { errors: formErrors },
   } = useForm<FormSchemaType>({ resolver: zodResolver(formSchema) });
-  const { sendRequest, isLoading, requestErrors } = useRequest();
+  const { sendRequest } = useRequest();
 
   const onSubmit: SubmitHandler<FormSchemaType> = async (data) => {
     try {
