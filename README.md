@@ -1,7 +1,6 @@
 # SSO with Frontegg APIs
 
 This is a sample application to showcase how to implement a login with sso flow using Frontegg APIs
-Currently supports only SAML login
 
 Refer to [this guide](https://support.frontegg.com/frontegg/article/ART-3940-how-to-implement-single-sign-on-sso-flow-with-frontegg-apis) for initial setup
 
@@ -61,8 +60,8 @@ _client_
 npm i
 ```
 
-4. Run both the client and the server. The client should be running on localhost:5500 and the server on localhost:3001
+4. Run the client, should be running on localhost:5500
 
 ```bash
-  npm run dev // inside both folders
+  npm run dev 
 ```
